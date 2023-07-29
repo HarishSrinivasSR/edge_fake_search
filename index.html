@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Search by hari</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #007BFF, #00BFFF);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 12px 24px;
+            background-color: #007BFF;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            font-size: 14px;
+            color: #333333;
+            margin-top: 10px;
+        }
+
+        input[type="number"] {
+            padding: 8px 12px;
+            border: 1px solid #007BFF;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #007BFF;
+            width: 100%;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Unique Search</h1>
+        <input type="number" id="numSearches" min="1" max="100" value="10" placeholder="Number of Random Searches">
+        <br>
+        <button onclick="performRandomSearches()">Random Searches</button>
+        <p>Click the button to perform random searches in new Edge windows.</p>
+    </div>
+
+    <script>
+        var searchWords = [
+  "journey", "sparkle", "marathon", "vibrant", "compass",
+  "paradise", "harmony", "graceful", "blossom", "vibrant",
+  "whisper", "splendid", "cherish", "tranquility", "laughter",
+  "melody", "cherish", "infinity", "majestic", "radiant",
+  "flourish", "cherish", "serenity", "jubilant", "enchant",
+  "tranquil", "dream", "cherish", "whisper", "moonlight",
+  "bloom", "paradise", "embrace", "serenity", "melody",
+  "cherished", "delightful", "joyous", "embrace", "radiant",
+  "harmony", "embrace", "enchant", "tranquility", "jubilant",
+  "cherished", "radiant", "blossom", "tranquil", "serene",
+  "jubilant", "embrace", "enchant", "harmony", "delightful",
+  "bloom", "serene", "whisper", "cherish", "cherish",
+  "enchant", "majestic", "bloom", "embrace", "cherish",
+  "serene", "majestic", "radiant", "jubilant", "cherish",
+  "enchant", "embrace", "harmony", "tranquil", "delightful",
+  "cherish", "jubilant", "serene", "enchant", "harmony",
+  "majestic", "cherished", "radiant", "jubilant", "blossom",
+  "tranquility", "whisper", "enchant", "tranquil", "cherish",
+  "jubilant", "majestic", "radiant", "enchant", "delightful",
+  "blossom", "tranquil", "serene", "cherished", "harmony",
+  "cherished", "radiant", "whisper", "enchant", "harmony",
+  "tranquil", "embrace", "jubilant", "cherish", "serene",
+  "enchant", "majestic", "radiant", "jubilant", "enchant",
+  "harmony", "cherished", "blossom", "tranquil", "cherish",
+  "embrace", "enchant", "radiant", "jubilant", "harmony",
+  "cherish", "tranquil", "jubilant", "majestic", "radiant",
+  "enchant", "harmony", "cherish", "tranquility", "delightful",
+  "jubilant", "radiant", "blossom", "tranquil", "cherished",
+  "enchant", "harmony", "radiant", "serene", "enchant",
+  "majestic", "harmony", "cherish", "tranquil", "jubilant",
+  "whisper", "blossom", "radiant", "enchant", "tranquil"
+];
+
+        function performRandomSearches() {
+            var numSearchesInput = document.getElementById("numSearches");
+            var numSearches = parseInt(numSearchesInput.value);
+
+            if (isNaN(numSearches) || numSearches <= 0 || numSearches > 100) {
+                alert("Please enter a valid number between 1 and 100.");
+                return;
+            }
+
+            for (var i = 0; i < numSearches; i++) {
+                var randomIndex = Math.floor(Math.random() * searchWords.length);
+                var randomWord = searchWords[randomIndex];
+                var searchIndex = Math.floor(Math.random() * 1000); // Generate a random index number
+                var searchQuery = "https://www.bing.com/search?pglt=161&q=" + encodeURIComponent(randomWord) + "-" + searchIndex + "&cvid=7c82759711614229a1b7125814f202f4&aqs=edge..69i57j0l7j69i60.945j0j1&FORM=ANAB01&PC=NMTS";
+                setTimeout(function (query) {
+                    window.open(query, "_blank");
+                }, 1000 * i, searchQuery); // Delay opening each search query
+            }
+        }
+    </script>
+</body>
+</html>
